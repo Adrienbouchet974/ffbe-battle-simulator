@@ -44,42 +44,111 @@ async function randomSpriteForUnits() {
     }
 }
 
-function goToEnemy() {
-    const attackButton = document.querySelector('#attack');
-    const currentAlly = document.querySelector('#selected-ally');
-    const unitsElement = document.querySelector('#units');
-    let currentAllyId;
-    let enemyFound = false; // Ajout d'une variable pour indiquer si l'ennemi est trouvé
-  
+const attackButton = document.querySelector('#attack');
+async function getCurrentSelectedStats() {
+    return new Promise((resolve, reject) => {
+        let randomStatsAlly = { hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
+        let randomStatsEnemy = { name: "hergoth'yr", hp: 700, atk: 90, def: 80, mana: 150, precision: 70, spd: 100 };
+        let stats = {};
+        
+        attackButton.addEventListener('mousedown', () => {
+            const currentlySelectedDiv = document.querySelector('#selected-ally');
+            const selectedAlly = Array.from(currentlySelectedDiv.childNodes).find(node => node.nodeName === "IMG");
+
+            const selectedEnemy = document.querySelector('#target > .sprite-container');
+
+            if (selectedAlly && selectedEnemy) {
+                let ally = {};
+                for (const stat in randomStatsAlly) {
+                    const value = randomStatsAlly[stat];
+                    ally[stat] = value;
+                }
+                stats["ally"] = ally;
+
+                let enemy = {};
+                for (const stat in randomStatsEnemy) {
+                    const value = randomStatsEnemy[stat];
+                    enemy[stat] = value;
+                }
+                stats["enemy"] = enemy;
+                resolve(stats);
+            } else {
+                reject(new Error("Error while fetchin Units stats"));
+            }
+        });
+    });
+}
+
+
+
+async function actions() {
+    const stats = await getCurrentSelectedStats();
+    console.log(stats);
+    let ally = stats["ally"];
+    let enemy = stats["enemy"];
+
     attackButton.addEventListener('mousedown', () => {
-        const foundAlly = Array.from(currentAlly.childNodes).find(node => node.nodeName === "IMG");
-      
-        if (foundAlly) {
-            currentAllyId = foundAlly.id;
-          
-            const foundUnit = Array.from(unitsElement.childNodes).find(node => {
-                const foundImage = Array.from(node.childNodes).find(img => currentAllyId.includes(img.id));
-                return foundImage !== undefined;
-            });
-          
-            if (foundUnit) {
-                enemyFound = true; // Mettre la variable enemyFound à true si l'ennemi est trouvé
+        if (ally.spd > enemy.spd) {
+            console.log("L'allié attaque en premier !");
+            console.log(`L'ennemi perd ${ally.atk - enemy.def} PV !`);
+            enemy.hp -= (ally.atk - enemy.def);
+            if(enemy.hp > 0) {
+                console.log(`Il lui reste ${enemy.hp} PV.`);
+            }
+        } else {
+            console.log("L'ennemi attaque en premier !");
+            console.log(`L'allié perd ${enemy.atk - ally.def} PV !`);
+            ally.hp -= (enemy.atk - ally.def);
+            if(ally.hp > 0){
+                console.log(`Il lui reste ${ally.hp} PV.`);
             }
         }
+        if(ally.hp <= 0 || enemy.hp <= 0) {
+            console.log("le personnage est mort !")
+        }
     });
-
-    return enemyFound; // Renvoyer la valeur de enemyFound
-}
-goToEnemy()
-
-function attackAnimation() {
-
 }
 
-function goToDefaultPosition(){
+actions();
+  
 
-}
+// function goToEnemy() {
+//     const attackButton = document.querySelector('#attack');
+//     const currentAlly = document.querySelector('#selected-ally');
+//     const unitsElement = document.querySelector('#units');
+//     let currentAllyId;
+//     let enemyFound = false; // Ajout d'une variable pour indiquer si l'ennemi est trouvé
+  
+//     attackButton.addEventListener('mousedown', () => {
+//         const foundAlly = Array.from(currentAlly.childNodes).find(node => node.nodeName === "IMG");
+      
+//         if (foundAlly) {
+//             currentAllyId = foundAlly.id;
+          
+//             const foundUnit = Array.from(unitsElement.childNodes).find(node => {
+//                 const foundImage = Array.from(node.childNodes).find(img => currentAllyId.includes(img.id));
+//                 return foundImage !== undefined;
+//             });
+          
+//             if (foundUnit) {
+//                 enemyFound = true; // Mettre la variable enemyFound à true si l'ennemi est trouvé
+//             }
+//         }
+//     });
+
+//     return enemyFound; // Renvoyer la valeur de enemyFound
+// }
+// goToEnemy()
+
+// function attackAnimation() {
+
+// }
+
+// function goToDefaultPosition(){
+
+// }
 
 
-goToEnemy()
+// goToEnemy()
 randomSpriteForUnits()
+getCurrentSelectedStats()
