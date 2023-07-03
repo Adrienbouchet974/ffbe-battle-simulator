@@ -38,8 +38,6 @@ async function randomSpriteForUnits() {
     for (let index = 0; index < jobsData[0]; index++) {
         const jobName = jobsData[1][getRandomValueFromArrayLength(jobsData[1])];
         const imgUrl = json[jobName][getRandomValueFromArrayLength(json[jobName])]
-        console.log(jobName)
-        console.log(imgUrl)
         images[index].src = imgUrl
     }
 }
