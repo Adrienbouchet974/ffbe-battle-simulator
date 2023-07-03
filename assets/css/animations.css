@@ -20,6 +20,13 @@
   overflow: hidden;
   animation: animate-elena 1.5s steps(8) infinite;
 }
+.ally-3-dead {
+  width: 69px;
+  height: 34px;
+  background-image: url("../images/Characters/Elena/Elena_Starlight/unit_dead_401008607.png");
+  background-size: 69px 34px;
+  overflow: hidden;
+}
 
 @keyframes animate-elena {
   from { background-position-x: 0; }
