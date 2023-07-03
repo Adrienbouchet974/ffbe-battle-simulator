@@ -44,15 +44,14 @@ async function randomSpriteForUnits() {
 
 const attackButton = document.querySelector('#attack');
 async function getCurrentSelectedStats() {
+    let randomStatsEnemy = await fetch(window.location.origin + "/assets/json/enemySheets.json").then(data => data.json()).then(data => {return data});
     return new Promise((resolve, reject) => {
-        let randomStatsAlly = { hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
-        let randomStatsEnemy = { name: "hergoth'yr", hp: 700, atk: 90, def: 80, mana: 150, precision: 70, spd: 80 };
+        let randomStatsAlly = { id: "ally-3", hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
+        let randomEnemy = randomStatsEnemy["enemy_1"]
         let stats = {};
         
         attackButton.addEventListener('mousedown', () => {
-            const currentlySelectedDiv = document.querySelector('#selected-ally');
-            const selectedAlly = Array.from(currentlySelectedDiv.childNodes).find(node => node.nodeName === "IMG");
-
+            const selectedAlly = document.querySelector('#ally-3');
             const selectedEnemy = document.querySelector('#target > .sprite-container');
 
             if (selectedAlly && selectedEnemy) {
@@ -64,8 +63,8 @@ async function getCurrentSelectedStats() {
                 stats["ally"] = ally;
 
                 let enemy = {};
-                for (const stat in randomStatsEnemy) {
-                    const value = randomStatsEnemy[stat];
+                for (const stat in randomEnemy) {
+                    const value = randomEnemy[stat];
                     enemy[stat] = value;
                 }
                 stats["enemy"] = enemy;
@@ -77,27 +76,27 @@ async function getCurrentSelectedStats() {
     });
 }
 
-function changeSpriteToDead(){
-    const images = []
-    const imagesFront = document.querySelectorAll('#column-front-units > img')
-    imagesFront.forEach( img => {
-        images.push(img)
-    })
-    const imagesBack = document.querySelectorAll('#column-back-units > img')
-    imagesBack.forEach( img => {
-        images.push(img)
-    })
-    const currentlySelectedDiv = document.querySelector('#selected-ally');
-    const selectedAlly = Array.from(currentlySelectedDiv.childNodes).find(node => node.nodeName === "IMG");
-    images.forEach( img => {
-        if(img.src == selectedAlly.src) {
-            img.classList.remove('alive')
-            img.src = 'http://www.ffbegif.com/Adventurer%20Locke/206002206%20Dead.png'
-            img.classList.add('dead')
-            selectedAlly.src = 'http://www.ffbegif.com/Adventurer%20Locke/206002206%20Dead.png'
-            selectedAlly.setAttribute("style", "width: 40% !important; height: 40% !important")
-        }
-    })
+function changeSpriteToDead(allyId){
+    console.log(allyId)
+    const alliesFront = document.body.querySelectorAll("#column-front-units > div");
+    const alliesBack = document.body.querySelectorAll("#column-back-units > div");
+
+    if(alliesFront.length > 0 || alliesBack.length > 0) {
+        alliesFront.forEach( ally => {
+            if(allyId == ally.id){
+                ally.classList.remove(`animate-${allyId}`)
+                ally.setAttribute("data-is-dead", "true")
+                ally.classList.add("ally-3-dead")
+            }
+        })
+        alliesBack.forEach( ally => {
+            if(allyId == ally.id){
+                ally.classList.remove(`animate-${allyId}`)
+                ally.setAttribute("data-is-dead", "true")
+                ally.classList.add("ally-3-dead")
+            }
+        })
+    }
 }
 
 async function actions() {
@@ -124,7 +123,7 @@ async function actions() {
         }
         if(ally.hp <= 0) {
             console.log("le personnage allié est mort !")
-            changeSpriteToDead()
+            changeSpriteToDead(ally.id)
         } else if(enemy.hp <= 0) {
             console.log("Vous avez triomphé de l'ennemie !")
         }
@@ -172,5 +171,5 @@ actions();
 
 
 // goToEnemy()
-randomSpriteForUnits()
+// randomSpriteForUnits()
 getCurrentSelectedStats()
