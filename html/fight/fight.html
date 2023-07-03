@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fight</title>
+    <script defer src="../../assets/javascript/fight.js"></script> <!-- add defer if it contains scripts that are synchronous -->
+    <script defer src="../../assets/javascript/miscellaneous.js"></script> <!-- add defer if it contains scripts that are synchronous -->
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+</head>
+<body>
+    <div id="fight-scene" class="d-flex position-relative height-75">
+        <img src="../../assets/images/maps/battle_bg_0124_02.jpg" alt="background" />
+        <div class="d-flex position-absolute justify-content-around top-50 width-100 height-48">
+            <div id="enemy" class="d-flex flex-column align-items-center justify-content-center">
+                <div id="column-front-enemy">
+                    <div id="enemy-1" class="sprite-container"></div>
+                    <!-- <img src="../images/enemy/4030010_idle.png" alt="enemy 1"> -->
+                    <!-- <img src="../images/enemy/4030010_idle.png" alt="enemy 2"> -->
+                </div>
+                <div id="column-back-enemy">
+                    <!-- <img src="../images/enemy/4030010_idle.png" alt="enemy 3"> -->
+                    <!-- <img src="../images/enemy/4030010_idle.png" alt="enemy 4"> -->
+                    <!-- <img src="../images/enemy/4030010_idle.png" alt="enemy 5"> -->
+                </div>
+            </div>
+            <div id="empty" class="d-flex"></div>
+            <div id="units" class="d-flex flex-row justify-content-evenly">
+                <div id="column-front-units" class="d-flex flex-column flex-wrap justify-content-center align-items-center height-100">
+                    <img src="http://www.ffbegif.com/Adventurer%20Locke/206002205%20Idle.png" id="ally-1" alt="unit 1">
+                    <img src="http://www.ffbegif.com/Sieghard%20(BS)/100017927%20Idle.png" id="ally-2" alt="unit 2">
+                </div>
+                <div id="column-back-units" class="d-flex flex-column flex-wrap justify-content-center align-items-center height-100">
+                    <img src="http://www.ffbegif.com/King%20Behemy%20(NV)/401010907%20Idle.png" id="ally-3" alt="unit 3">
+                    <img src="http://www.ffbegif.com/Warrior%20of%20Light/201000106%20Idle.png" id="ally-4" alt="unit 4">
+                    <img src="http://www.ffbegif.com/Chow/401003807%20Idle.png" id="ally-5" alt="unit 5">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="d-flex" id="footer-info">
+        <div id="scene-info">
+            <div id="selected-ally" class="d-flex justify-content-around align-items-center">
+                <h5>Ally turn:</h5>
+            </div>
+            <div id="target" class="d-flex justify-content-around align-items-center">
+                <h5>Target:</h5>
+            </div>
+        </div>
+        <div id="available-actions" class="d-flex width-100 flex-column">
+            <div class="d-flex justify-content-around align-items-center">
+                <button title="attack" id="attack" type="button" class="width-33 height-90">attack</button>
+                <button title="defend" id="defend" type="button" class="width-33 height-90">defend</button>
+            </div>
+            <div class="d-flex justify-content-around">
+                <button title="run" id="run" type="button" class="width-50 height-90">run</button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
