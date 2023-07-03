@@ -35,13 +35,13 @@ h5 {
     margin-top: -1.712%;
     margin-left: -1.712%;
 }
-#column-front-units > img {
+.alive {
     width: 65% !important;
     height: 35% !important;
 }
-#column-back-units > img {
+.dead {
     width: 65% !important;
-    height: 35% !important;
+    height: 15% !important;
 }
 
 #footer-info {
@@ -70,7 +70,6 @@ h5 {
     height: 101%;
     padding-right: 1.712%;
     background-color: rgba(0, 255, 0, 0.3);
-
 }
 
 .height-100 {
