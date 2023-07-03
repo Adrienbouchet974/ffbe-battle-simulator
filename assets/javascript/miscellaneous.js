@@ -1,4 +1,4 @@
-const attackButton = document.querySelector('#attack');
+// const attackButton = document.querySelector('#attack');
 
 function createImgTarget(){
     const enemy = document.body.querySelector("#enemy_1");
