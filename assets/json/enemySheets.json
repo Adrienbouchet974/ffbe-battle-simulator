@@ -1,0 +1,262 @@
+{
+    "enemy_1" :{
+        "name": "hergoth'yr",
+        "hp": 3000,
+        "atk": 500,
+        "def": 80,
+        "mana": 150,
+        "precision": 70,
+        "spd": 200,
+        "is_boss": 1,
+        "actions": {
+            "basic_attack": {
+                "name": [
+                    "basic_attack_1",
+                    "basic_attack_2",
+                    "basic_attack_3"
+                ]
+            },
+            "magic": {
+                "name": {
+                    "magic_attack_1" : {
+                        "buffs": {
+                            "atk_up": false,
+                            "def_up": false,
+                            "spd_up": true,
+                            "precision_up": true,
+                            "turns_duration": 3
+                        },
+                        "debuffs": {
+                            "atk-down": false,
+                            "def_down": false,
+                            "spd_down": false,
+                            "precision_down": true,
+                            "turn_durations": 1
+                        },
+                        "stats_multipplier": {
+                            "atk_multiplier": 1.5,
+                            "def_multiplier": 0,
+                            "spd_multiplier": 2,
+                            "precision_multiplier": 1.5
+                        },
+                        "is_aoe": true
+                    },
+                    "magic_attack_2": {
+
+                    },
+                    "magic_attack_3": {
+
+                    }
+                }
+            }
+        }
+    },
+    "enemy_2" :{
+        "name": "Fubt'aru",
+        "hp": 4500,
+        "atk": 65,
+        "def": 100,
+        "mana": 200,
+        "precision": 90,
+        "spd": 50,
+        "is_boss": 1,
+        "actions": {
+            "basic_attack": {
+                "name": [
+                    "basic_attack_1",
+                    "basic_attack_2",
+                    "basic_attack_3"
+                ]
+            },
+            "magic": {
+                "name": {
+                    "magic_attack_1" : {
+                        "buffs": {
+                            "atk_up": false,
+                            "def_up": false,
+                            "spd_up": true,
+                            "precision_up": true,
+                            "turns_duration": 3
+                        },
+                        "debuffs": {
+                            "atk-down": false,
+                            "def_down": false,
+                            "spd_down": false,
+                            "precision_down": true,
+                            "turn_durations": 1
+                        },
+                        "stats_multipplier": {
+                            "atk_multiplier": 1.5,
+                            "def_multiplier": 0,
+                            "spd_multiplier": 2,
+                            "precision_multiplier": 1.5
+                        },
+                        "is_aoe": true
+                    },
+                    "magic_attack_2": {
+
+                    },
+                    "magic_attack_3": {
+
+                    }
+                }
+            }
+        }
+    },
+    "enemy_3" :{
+        "name": "Loup",
+        "hp": 300,
+        "atk": 70,
+        "def": 50,
+        "mana": 90,
+        "precision": 75,
+        "spd": 100,
+        "is_boss": 0,
+        "actions": {
+            "basic_attack": {
+                "name": [
+                    "basic_attack_1",
+                    "basic_attack_2",
+                    "basic_attack_3"
+                ]
+            },
+            "magic": {
+                "name": {
+                    "magic_attack_1" : {
+                        "buffs": {
+                            "atk_up": false,
+                            "def_up": false,
+                            "spd_up": true,
+                            "precision_up": true,
+                            "turns_duration": 3
+                        },
+                        "debuffs": {
+                            "atk-down": false,
+                            "def_down": false,
+                            "spd_down": false,
+                            "precision_down": true,
+                            "turn_durations": 1
+                        },
+                        "stats_multipplier": {
+                            "atk_multiplier": 1.5,
+                            "def_multiplier": 0,
+                            "spd_multiplier": 2,
+                            "precision_multiplier": 1.5
+                        },
+                        "is_aoe": true
+                    },
+                    "magic_attack_2": {
+
+                    },
+                    "magic_attack_3": {
+
+                    }
+                }
+            }
+        }
+    },
+    "enemy_4" :{
+        "name": "Robot ravagé",
+        "hp": 500,
+        "atk": 60,
+        "def": 80,
+        "mana": 100,
+        "precision": 100,
+        "spd": 65,
+        "is_boss": 0,
+        "actions": {
+            "basic_attack": {
+                "name": [
+                    "basic_attack_1",
+                    "basic_attack_2",
+                    "basic_attack_3"
+                ]
+            },
+            "magic": {
+                "name": {
+                    "magic_attack_1" : {
+                        "buffs": {
+                            "atk_up": false,
+                            "def_up": false,
+                            "spd_up": true,
+                            "precision_up": true,
+                            "turns_duration": 3
+                        },
+                        "debuffs": {
+                            "atk-down": false,
+                            "def_down": false,
+                            "spd_down": false,
+                            "precision_down": true,
+                            "turn_durations": 1
+                        },
+                        "stats_multipplier": {
+                            "atk_multiplier": 1.5,
+                            "def_multiplier": 0,
+                            "spd_multiplier": 2,
+                            "precision_multiplier": 1.5
+                        },
+                        "is_aoe": true
+                    },
+                    "magic_attack_2": {
+
+                    },
+                    "magic_attack_3": {
+
+                    }
+                }
+            }
+        }
+    },
+    "enemy_5" :{
+        "name": "Plante carnivore",
+        "hp": 600,
+        "atk": 40,
+        "def": 40,
+        "mana": 200,
+        "precision": 80,
+        "spd": 150,
+        "is_boss": 0,
+        "actions": {
+            "basic_attack": {
+                "name": [
+                    "basic_attack_1",
+                    "basic_attack_2",
+                    "basic_attack_3"
+                ]
+            },
+            "magic": {
+                "name": {
+                    "magic_attack_1" : {
+                        "buffs": {
+                            "atk_up": false,
+                            "def_up": false,
+                            "spd_up": true,
+                            "precision_up": true,
+                            "turns_duration": 3
+                        },
+                        "debuffs": {
+                            "atk-down": false,
+                            "def_down": false,
+                            "spd_down": false,
+                            "precision_down": true,
+                            "turn_durations": 1
+                        },
+                        "stats_multipplier": {
+                            "atk_multiplier": 1.5,
+                            "def_multiplier": 0,
+                            "spd_multiplier": 2,
+                            "precision_multiplier": 1.5
+                        },
+                        "is_aoe": true
+                    },
+                    "magic_attack_2": {
+
+                    },
+                    "magic_attack_3": {
+
+                    }
+                }
+            }
+        }
+    }
+}
