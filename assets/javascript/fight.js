@@ -77,25 +77,33 @@ async function getCurrentSelectedStats() {
 }
 
 function changeSpriteToDead(allyId){
-    console.log(allyId)
     const alliesFront = document.body.querySelectorAll("#column-front-units > div");
     const alliesBack = document.body.querySelectorAll("#column-back-units > div");
+    const selectedAllyDiv = document.querySelector(`#selected-ally .animate-${allyId}`)
 
     if(alliesFront.length > 0 || alliesBack.length > 0) {
-        alliesFront.forEach( ally => {
+        for (const ally of alliesFront){
             if(allyId == ally.id){
+                console.log(selectedAllyDiv)
                 ally.classList.remove(`animate-${allyId}`)
                 ally.setAttribute("data-is-dead", "true")
-                ally.classList.add("ally-3-dead")
+                ally.classList.add(`${allyId}-dead`)
+                selectedAllyDiv.classList.remove(`animate-${allyId}`)
+                selectedAllyDiv.classList.add(`${allyId}-dead`)
+                break
             }
-        })
-        alliesBack.forEach( ally => {
+        }
+        for (const ally of alliesBack){
             if(allyId == ally.id){
+                console.log(selectedAllyDiv)
                 ally.classList.remove(`animate-${allyId}`)
                 ally.setAttribute("data-is-dead", "true")
-                ally.classList.add("ally-3-dead")
+                ally.classList.add(`${allyId}-dead`)
+                selectedAllyDiv.classList.remove(`animate-${allyId}`)
+                selectedAllyDiv.classList.add(`${allyId}-dead`)
+                break
             }
-        })
+        }
     }
 }
 
