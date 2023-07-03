@@ -48,7 +48,7 @@ const attackButton = document.querySelector('#attack');
 async function getCurrentSelectedStats() {
     return new Promise((resolve, reject) => {
         let randomStatsAlly = { hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
-        let randomStatsEnemy = { name: "hergoth'yr", hp: 700, atk: 90, def: 80, mana: 150, precision: 70, spd: 100 };
+        let randomStatsEnemy = { name: "hergoth'yr", hp: 700, atk: 90, def: 80, mana: 150, precision: 70, spd: 80 };
         let stats = {};
         
         attackButton.addEventListener('mousedown', () => {
@@ -79,7 +79,28 @@ async function getCurrentSelectedStats() {
     });
 }
 
-
+function changeSpriteToDead(){
+    const images = []
+    const imagesFront = document.querySelectorAll('#column-front-units > img')
+    imagesFront.forEach( img => {
+        images.push(img)
+    })
+    const imagesBack = document.querySelectorAll('#column-back-units > img')
+    imagesBack.forEach( img => {
+        images.push(img)
+    })
+    const currentlySelectedDiv = document.querySelector('#selected-ally');
+    const selectedAlly = Array.from(currentlySelectedDiv.childNodes).find(node => node.nodeName === "IMG");
+    images.forEach( img => {
+        if(img.src == selectedAlly.src) {
+            img.classList.remove('alive')
+            img.src = 'http://www.ffbegif.com/Adventurer%20Locke/206002206%20Dead.png'
+            img.classList.add('dead')
+            selectedAlly.src = 'http://www.ffbegif.com/Adventurer%20Locke/206002206%20Dead.png'
+            selectedAlly.setAttribute("style", "width: 40% !important; height: 40% !important")
+        }
+    })
+}
 
 async function actions() {
     const stats = await getCurrentSelectedStats();
@@ -103,8 +124,11 @@ async function actions() {
                 console.log(`Il lui reste ${ally.hp} PV.`);
             }
         }
-        if(ally.hp <= 0 || enemy.hp <= 0) {
-            console.log("le personnage est mort !")
+        if(ally.hp <= 0) {
+            console.log("le personnage allié est mort !")
+            changeSpriteToDead()
+        } else if(enemy.hp <= 0) {
+            console.log("Vous avez triomphé de l'ennemie !")
         }
     });
 }
