@@ -4,6 +4,12 @@ function getRandomValueFromArrayLength(array) {
     return value;
 }
 
+async function populateAlliesInDOM(numberAllies){
+}
+
+async function populateEnemiesInDOM(numberEnemies){
+}
+
 async function delay(ms) {
     new Promise((resolve, error) => {
         setTimeout(() => {
@@ -42,7 +48,7 @@ async function randomSpriteForUnits() {
     }
 }
 
-function selectRandomUnitsId(){
+function selectRandomUnit(){
     const alliesFront = document.body.querySelectorAll("#column-front-units > div");
     const alliesBack = document.body.querySelectorAll("#column-back-units > div");
     // const selectedAllyDiv = document.querySelector(`#selected-ally .animate-${allyId}`)
@@ -59,7 +65,7 @@ function selectRandomUnitsId(){
     }
     return allies[getRandomValueFromArrayLength(allies)]
 }
-selectRandomUnitsId()
+selectRandomUnit()
 
 const attackButton = document.querySelector('#attack');
 async function getCurrentSelectedStats() {
