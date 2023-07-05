@@ -42,11 +42,30 @@ async function randomSpriteForUnits() {
     }
 }
 
+function selectRandomUnitsId(){
+    const alliesFront = document.body.querySelectorAll("#column-front-units > div");
+    const alliesBack = document.body.querySelectorAll("#column-back-units > div");
+    // const selectedAllyDiv = document.querySelector(`#selected-ally .animate-${allyId}`)
+    const allies = []
+    if(alliesFront.length != 0) {
+        alliesFront.forEach(element => {
+            allies.push(element.id)
+        })
+    }
+    if(alliesBack.length != 0) {
+        alliesBack.forEach(element => {
+            allies.push(element.id)
+        })
+    }
+    return allies[getRandomValueFromArrayLength(allies)]
+}
+selectRandomUnitsId()
+
 const attackButton = document.querySelector('#attack');
 async function getCurrentSelectedStats() {
     let randomStatsEnemy = await fetch(window.location.origin + "/assets/json/enemySheets.json").then(data => data.json()).then(data => {return data});
     return new Promise((resolve, reject) => {
-        let randomStatsAlly = { id: "ally-3", hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
+        let randomStatsAlly = { id: `ally-3`, hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
         let randomEnemy = randomStatsEnemy["enemy_1"]
         let stats = {};
         
