@@ -1,25 +1,74 @@
-function createImgTarget(){
-    const enemy = document.body.querySelector("#enemy_1");
-    console.log(enemy);
+// function createImgTarget(enemyId){
+//   const enemiesFront = document.body.querySelectorAll("#column-front-enemy > div");
+//   const enemiesBack = document.body.querySelectorAll("#column-back-enemy > div");
 
-    let isTargetAdded = false; // Variable pour vérifier si l'élément a déjà été ajouté
+//   let enemyDiv = null;
 
-    if (enemy) {
-        const target = document.body.querySelector('#target');
-        
-        enemy.addEventListener('click', () => {
-            if (!isTargetAdded) { // Vérifier si l'élément n'a pas déjà été ajouté
-            const divTarget = document.createElement('div');
-            divTarget.classList.add("sprite-container");
-            target.appendChild(divTarget);
-            isTargetAdded = true; // Mettre à jour la variable pour indiquer que l'élément a été ajouté
-            }
-        });
-    }
-}
-createImgTarget()
+//   enemiesFront.forEach(enemy => {
+//     enemy.addEventListener('click', () => {
+//       const selectedenemy = document.body.querySelector('#target');
 
-function createImgAlly() {
+//       if (enemy.getAttribute("data-selected") === "false") {
+//         enemy.setAttribute("data-selected", "true");
+//       } else {
+//         enemy.setAttribute("data-selected", "false");
+//       }
+
+//       if (enemy.getAttribute("data-is-dead") === "true") {
+//         enemyDiv = null;
+//       }
+
+//       if (enemyDiv === null) {
+//         enemyDiv = document.createElement('div');
+//         selectedenemy.innerHTML = '<h5>enemy turn:</h5>'
+//         selectedenemy.appendChild(enemyDiv);
+//       }
+
+//       enemyDiv.className = `sprite-container`;
+
+//       if (enemy.getAttribute("data-is-dead") === "true") {
+//           enemyDiv.classList.remove(`sprite-container`);
+//         enemyDiv.classList.add(`${enemy.id}-dead`);
+//       } else {
+//         enemyDiv.classList.remove(`${enemy.id}-dead`);
+//       }
+//     });
+//   });
+
+//   enemiesBack.forEach(enemy => {
+//     enemy.addEventListener('click', () => {
+//       const selectedenemy = document.body.querySelector('#target');
+
+//       if (enemy.getAttribute("data-selected") === "false") {
+//         enemy.setAttribute("data-selected", "true");
+//       } else {
+//         enemy.setAttribute("data-selected", "false");
+//       }
+
+//       if (enemy.getAttribute("data-is-dead") === "true") {
+//         enemyDiv = null;
+//       }
+
+//       if (enemyDiv === null) {
+//         enemyDiv = document.createElement('div');
+//         selectedenemy.innerHTML = '<h5>enemy turn:</h5>'
+//         selectedenemy.appendChild(enemyDiv);
+//       }
+
+//       enemyDiv.className = `sprite-container`;
+
+//       if (enemy.getAttribute("data-is-dead") === "true") {
+//           enemyDiv.classList.remove(`sprite-container`);
+//         enemyDiv.classList.add(`${enemy.id}-dead`);
+//       } else {
+//         enemyDiv.classList.remove(`${enemy.id}-dead`);
+//       }
+//     });
+//   });
+// }
+// createImgTarget()
+
+function createImgAlly(allyId) {
     const alliesFront = document.body.querySelectorAll("#column-front-units > div");
     const alliesBack = document.body.querySelectorAll("#column-back-units > div");
   
