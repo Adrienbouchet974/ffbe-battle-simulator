@@ -1,0 +1,29 @@
+{
+    "ally-3": {
+        "id": "ally-3",
+        "name": "Elena_Starlight",
+        "info": {
+            "hp": 1000,
+            "atk": 500,
+            "def": 260,
+            "mana": 150,
+            "precision": 70,
+            "spd": 300,
+            "sprites_sheets": {
+                "atk": "../images/Characters/Elena/Elena_Starlight/unit_atk_401008607.png",
+                "dead": "../images/Characters/Elena/Elena_Starlight/unit_dead_401008607.png",
+                "dying": "../images/Characters/Elena/Elena_Starlight/unit_dying_401008607.png",
+                "icon": "../images/Characters/Elena/Elena_Starlight/unit_icon_401008607.png",
+                "idle": "../images/Characters/Elena/Elena_Starlight/unit_idle_401008607.png",
+                "ills": "../images/Characters/Elena/Elena_Starlight/unit_ills_401008607.png",
+                "limit_atk": "../images/Characters/Elena/Elena_Starlight/unit_limit_atk_401008607.png",
+                "magic_atk": "../images/Characters/Elena/Elena_Starlight/unit_magic_atk_401008607.png",
+                "magic_standby": "../images/Characters/Elena/Elena_Starlight/unit_magic_standby_401008607.png",
+                "move": "../images/Characters/Elena/Elena_Starlight/unit_move_401008607.png",
+                "standby": "../images/Characters/Elena/Elena_Starlight/unit_standby_401008607.png",
+                "win": "../images/Characters/Elena/Elena_Starlight/unit_win_401008607.png",
+                "win_before": "../images/Characters/Elena/Elena_Starlight/unit_win_before_401008607.png"
+            }
+        }
+    }
+}
