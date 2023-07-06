@@ -4,11 +4,58 @@ function getRandomValueFromArrayLength(array) {
     return value;
 }
 
-async function populateAlliesInDOM(numberAllies){
+function populateAlliesInDOM(numberAllies){
+    const alliesFront = document.body.querySelector("#column-front-units");
+    const alliesBack = document.body.querySelector("#column-back-units");
+    console.log(alliesFront)
+    console.log(alliesBack)
+    const divs = []
+    for (let number = 1; number <= numberAllies; number++) {
+        const allyDiv = document.createElement('div')
+        allyDiv.setAttribute('id', 'ally-' + number)
+        allyDiv.classList.add('animate-ally-'+ number )
+        allyDiv.setAttribute('data-is-dead', 'false')
+        allyDiv.setAttribute('data-is-selected', 'false')
+        divs.push(allyDiv)
+    }
+    for (const div of divs) {
+        for (let number = 0; number < divs.length; number++) {
+            const ally = divs[number]
+            if(number < 2) {
+                alliesFront.appendChild(ally)
+            } else if (number > 1 && number < 5) {
+                alliesBack.appendChild(ally)
+            }
+        }
+    }
 }
-
-async function populateEnemiesInDOM(numberEnemies){
+function populateEnemiesInDOM(numberEnemies){
+    const enemiesFront = document.body.querySelector("#column-front-enemy");
+    const enemiesBack = document.body.querySelector("#column-back-enemy");
+    console.log(enemiesFront)
+    console.log(enemiesBack)
+    const divs = []
+    for (let number = 1; number <= numberEnemies; number++) {
+        const enemyDiv = document.createElement('div')
+        enemyDiv.setAttribute('id', 'enemy_' + number)
+        enemyDiv.classList.add('sprite-container')
+        // enemyDiv.setAttribute('data-is-dead', 'false')
+        // enemyDiv.setAttribute('data-is-selected', 'false')
+        divs.push(enemyDiv)
+    }
+    for (const div of divs) {
+        for (let number = 0; number < divs.length; number++) {
+            const enemy = divs[number]
+            if(number < 2) {
+                enemiesFront.appendChild(enemy)
+            } else if (number > 1 && number < 5) {
+                enemiesBack.appendChild(enemy)
+            }
+        }
+    }
 }
+document.addEventListener('DOMContentLoaded', populateAlliesInDOM(5))
+document.addEventListener('DOMContentLoaded', populateEnemiesInDOM(5))
 
 async function delay(ms) {
     new Promise((resolve, error) => {
@@ -16,36 +63,6 @@ async function delay(ms) {
             resolve
         }, ms)
     })
-}
-
-async function randomSpriteForUnits() {
-    const images = []
-    const imagesFront = document.querySelectorAll('#column-front-units > img')
-    imagesFront.forEach( img => {
-        images.push(img)
-    })
-    const imagesBack = document.querySelectorAll('#column-back-units > img')
-    imagesBack.forEach( img => {
-        images.push(img)
-    })
-    const json = await fetch(window.location.origin + '/assets/json/charactersImages.json').then(data => data.json()).then(data=> {return data})
-
-    async function getJobNumberAndNames() {
-        let numberJobs = 0
-        const jobNames = []
-        for (let job in json) {
-            jobNames.push(job)
-            numberJobs += 1
-        }
-        return [numberJobs, jobNames]
-    }
-    const jobsData = await getJobNumberAndNames()
-    
-    for (let index = 0; index < jobsData[0]; index++) {
-        const jobName = jobsData[1][getRandomValueFromArrayLength(jobsData[1])];
-        const imgUrl = json[jobName][getRandomValueFromArrayLength(json[jobName])]
-        images[index].src = imgUrl
-    }
 }
 
 function selectRandomUnit(){
@@ -65,24 +82,58 @@ function selectRandomUnit(){
     }
     return allies[getRandomValueFromArrayLength(allies)]
 }
-selectRandomUnit()
+function selectRandomEnemy(){
+    const enemiesFront = document.body.querySelectorAll("#column-front-enemy > div");
+    const enemiesBack = document.body.querySelectorAll("#column-back-enemy > div");
+    // const selectedAllyDiv = document.querySelector(`#selected-ally .animate-${allyId}`)
+    const enemies = []
+    if(enemiesFront.length != 0) {
+        enemiesFront.forEach(element => {
+            enemies.push(element.id)
+        })
+    }
+    if(enemiesBack.length != 0) {
+        enemiesBack.forEach(element => {
+            enemies.push(element.id)
+        })
+    }
+    return enemies[getRandomValueFromArrayLength(enemies)]
+}
+
+function createImgTarget(enemyId){
+    const enemy = document.querySelector(`#${enemyId}`)
+    const enemyAnim = enemy.classList[0]
+    const target = document.querySelector("#target")
+    const enemyTarget = document.createElement("div")
+    enemyTarget.classList.add(enemyAnim)
+    target.childNodes.forEach( element => {
+        if(element.nodeName != "DIV" && element.id != enemyId) {
+            target.appendChild(enemyTarget)
+        }
+    })
+}
+createImgTarget(selectRandomEnemy())
 
 const attackButton = document.querySelector('#attack');
-async function getCurrentSelectedStats() {
+async function getCurrentSelectedStats(allyId, enemyId) {
+    console.log(allyId)
+    console.log(enemyId)
     let randomStatsEnemy = await fetch(window.location.origin + "/assets/json/enemySheets.json").then(data => data.json()).then(data => {return data});
+    let randomStatsAlly =  await fetch(window.location.origin + "/assets/json/characterSheets.json").then(data => data.json()).then(data => {return data});
     return new Promise((resolve, reject) => {
-        let randomStatsAlly = { id: `ally-3`, hp: 500, atk: 150, def: 60, mana: 50, precision: 90, spd: 90 };
-        let randomEnemy = randomStatsEnemy["enemy_1"]
+        let randomAlly = randomStatsAlly[allyId]
+        let randomEnemy = randomStatsEnemy[enemyId]
         let stats = {};
         
         attackButton.addEventListener('mousedown', () => {
-            const selectedAlly = document.querySelector('#ally-3');
-            const selectedEnemy = document.querySelector('#target > .sprite-container');
+            // const selectedAlly = document.querySelector(`#${randomAlly.id}`);
+            const selectedAlly = document.querySelector(`#${allyId}`);
+            const selectedEnemy = document.querySelector(`#${enemyId}`);
 
             if (selectedAlly && selectedEnemy) {
                 let ally = {};
-                for (const stat in randomStatsAlly) {
-                    const value = randomStatsAlly[stat];
+                for (const stat in randomAlly) {
+                    const value = randomAlly[stat];
                     ally[stat] = value;
                 }
                 stats["ally"] = ally;
@@ -133,7 +184,7 @@ function changeSpriteToDead(allyId){
 }
 
 async function actions() {
-    const stats = await getCurrentSelectedStats();
+    const stats = await getCurrentSelectedStats(selectRandomUnit(), selectRandomEnemy());
     console.log(stats);
     let ally = stats["ally"];
     let enemy = stats["enemy"];
@@ -205,4 +256,4 @@ actions();
 
 // goToEnemy()
 // randomSpriteForUnits()
-getCurrentSelectedStats()
+// getCurrentSelectedStats()
