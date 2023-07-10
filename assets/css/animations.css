@@ -1,15 +1,57 @@
-.sprite-container {
-  width: 175px; /* Définissez ici la largeur du sprite */
-  height: 121px; /* Définissez ici la hauteur du sprite */
-  background-image: url('../images/enemy/4030010_idle.png');
-  background-size: 700px 100%; /* Ajustez "auto" à la largeur totale de votre sprite sheet */
-  overflow: hidden;
-  animation: sprite-animation 2s steps(4) infinite;
+#enemy {
+  .animate-enemy-1 {
+    width: 175px; /* Définissez ici la largeur du sprite */
+    height: 121px; /* Définissez ici la hauteur du sprite */
+    background-image: url('../images/enemy/4030010_idle.png');
+    background-size: 700px 100%; /* Ajustez "auto" à la largeur totale de votre sprite sheet */
+    overflow: hidden;
+    animation: animate-enemy-1 2s steps(4) infinite;
+  }
+  
+  .animate-enemy-2 {
+    width: 249px; /* Définissez ici la largeur du sprite */
+    height: 272px; /* Définissez ici la hauteur du sprite */
+    background-image: url('../images/enemy/3040010_idle.png');
+    background-size: 747px 2176px; /* Ajustez "auto" à la largeur totale de votre sprite sheet */
+    overflow: hidden;
+    animation: animate-enemy-2 10s steps(24) infinite;
+  }
 }
+#target {
+  .animate-enemy-1-small {
+    width: 116.66px; /* Définissez ici la largeur du sprite */
+    height: 80.66px; /* Définissez ici la hauteur du sprite */
+    background-image: url('../images/enemy/4030010_idle.png');
+    background-size: 466.66px 100%; /* Ajustez "auto" à la largeur totale de votre sprite sheet */
+    overflow: hidden;
+    animation: animate-enemy-1-small 2s steps(4) infinite;
+  }
+  
+  .animate-enemy-2-small {
+    width: 124.5px; /* Définissez ici la largeur du sprite */
+    height: 136px; /* Définissez ici la hauteur du sprite */
+    background-image: url('../images/enemy/3040010_idle.png');
+    background-size: 373.5px 1088px; /* Ajustez "auto" à la largeur totale de votre sprite sheet */
+    overflow: hidden;
+    animation: animate-enemy-2-small 10s steps(24) infinite;
+  }
 
-@keyframes sprite-animation {
+}
+@keyframes animate-enemy-1 {
   from { background-position-x: 0; }
   to { background-position-x: -700px; /* Ajustez cette valeur à la largeur totale de votre sprite sheet */ }
+}
+@keyframes animate-enemy-1-small {
+  from { background-position-x: 0; }
+  to { background-position-x: -466.66px; /* Ajustez cette valeur à la largeur totale de votre sprite sheet */ }
+}
+@keyframes animate-enemy-2 {
+  from { background-position-x: 0; }
+  to { background-position-x: -5976px; /* Ajustez cette valeur à la largeur totale de votre sprite sheet */ }
+}
+@keyframes animate-enemy-2-small {
+  from { background-position-x: 0; }
+  to { background-position-x: -2988px; /* Ajustez cette valeur à la largeur totale de votre sprite sheet */ }
 }
 
 .animate-ally-3 {
@@ -18,7 +60,7 @@
   background-image: url("../images/Characters/Elena/Elena_Starlight/unit_idle_401008607.png");
   background-size: 282px 213px;
   overflow: hidden;
-  animation: animate-elena 1.5s steps(8) infinite;
+  animation: animate-ally-3 1.5s steps(8) infinite;
 }
 .ally-3-dead {
   width: 69px;
@@ -28,7 +70,7 @@
   overflow: hidden;
 }
 
-@keyframes animate-elena {
+@keyframes animate-ally-3 {
   from { background-position-x: 0; }
   to { background-position-x: -752px;}
 }
