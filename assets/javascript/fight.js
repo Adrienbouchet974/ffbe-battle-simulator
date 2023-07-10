@@ -38,7 +38,7 @@ function populateEnemiesInDOM(numberEnemies){
     for (let number = 1; number <= numberEnemies; number++) {
         const enemyDiv = document.createElement('div')
         enemyDiv.setAttribute('id', 'enemy_' + number)
-        enemyDiv.classList.add('sprite-container')
+        enemyDiv.classList.add(`animate-enemy-${number}`)
         // enemyDiv.setAttribute('data-is-dead', 'false')
         // enemyDiv.setAttribute('data-is-selected', 'false')
         divs.push(enemyDiv)
@@ -105,7 +105,7 @@ function createImgTarget(enemyId){
     const enemyAnim = enemy.classList[0]
     const target = document.querySelector("#target")
     const enemyTarget = document.createElement("div")
-    enemyTarget.classList.add(enemyAnim)
+    enemyTarget.classList.add(enemyAnim + '-small')
     target.childNodes.forEach( element => {
         if(element.nodeName != "DIV" && element.id != enemyId) {
             target.appendChild(enemyTarget)
